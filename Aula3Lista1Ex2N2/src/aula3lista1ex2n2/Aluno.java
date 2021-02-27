@@ -16,6 +16,26 @@ public class Aluno {
     private float ac2;
     private float ag;
     private float af;
+    private int codigoEscola;
+    
+    public Aluno(String ra){
+        this();
+        this.ra = ra;
+    }
+    public Aluno(){
+        codigoEscola = 5;
+    }
+    public Aluno(String ra, String nome){        
+        this(ra);
+        this.nome = nome;        
+    }
+    public Aluno(String ra, String nome, float ac1, float ac2, float ag, float af){
+        this(ra,nome);
+        this.ac1 = ac1;
+        this.ac2 = ac2;
+        this.ag = ag;
+        this.af = af;
+    }
     
     public float calcularMedia(){
         return (ac1 * 0.15f) + (ac2 *0.30f) + (ag * 0.10f) + (af * 0.45f);
