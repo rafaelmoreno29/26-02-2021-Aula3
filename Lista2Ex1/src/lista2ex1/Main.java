@@ -5,6 +5,8 @@
  */
 package lista2ex1;
 
+
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,26 +26,44 @@ public class Main {
         char sexo;
         double valorAutomovel;
         Apolice apolice = null;
-        while(opc != 3){
+        ArrayList<Apolice> listApolice = new ArrayList<Apolice>();
+        String msg = "";
+        while (opc != 4) {
             opc = Integer.parseInt(
-                  JOptionPane.showInputDialog("1 - Criar Apólice\n2 - Mostrar Apólice\n3 - Sair"));
-            
-            switch(opc){
-                case 1: 
+                    JOptionPane.showInputDialog("1 - Criar Apólice\n2 - Mostrar Todas\n"
+                            + "3 - Mostrar por número\n4 - Sair"));
+
+            switch (opc) {
+                case 1:
                     numero = Integer.parseInt(JOptionPane.showInputDialog("Número"));
                     nome = JOptionPane.showInputDialog("Nome");
                     idade = Integer.parseInt(JOptionPane.showInputDialog("Idade"));
                     sexo = JOptionPane.showInputDialog("Sexo").toUpperCase().charAt(0);
                     valorAutomovel = Double.parseDouble(JOptionPane.showInputDialog("Valor Auto."));
                     apolice = new Apolice(numero, nome, idade, sexo, valorAutomovel);
+                    listApolice.add(apolice);
                     break;
-                case 2: 
-                    JOptionPane.showMessageDialog(null, apolice.imprimir());
+                case 2:
+                    msg ="";
+                    for (Apolice ap : listApolice) {
+                        msg += ap.imprimir() + "\n---------\n";
+                    }
+                    JOptionPane.showMessageDialog(null, msg);
                     break;
-                case 3: break;
-                default: break;
+                case 3:
+                    numero = Integer.parseInt(JOptionPane.showInputDialog("Número"));
+                    for(Apolice ap : listApolice){
+                        if(ap.getNumero() == numero){
+                            JOptionPane.showMessageDialog(null, ap.imprimir());
+                        }
+                    }
+                    break;
+                case 4:
+                    break;
+                default:
+                    break;
             }
         }
     }
-    
+
 }
